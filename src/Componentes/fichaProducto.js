@@ -1,5 +1,6 @@
 import React from 'react'
-import {Modal, Container, Button} from 'reactstrap';
+import {Modal, Container, Button, ModalHeader, ModalBody, ModalFooter, CardImg} from 'reactstrap';
+import './fichaProducto.css';
 
 
 class FichaProducto extends React.Component{
@@ -13,6 +14,7 @@ class FichaProducto extends React.Component{
 
         //bind hara que los argumentos recibidos por la clase puedan ser compartidos a los demas metodos de la clase
         this.toggle = this.toggle.bind(this);
+        console.log(props.props);
     }
     toggle(){
        // console.log(this.props)
@@ -24,12 +26,22 @@ class FichaProducto extends React.Component{
     //boton de reacstrap
     render(){
         return(
-            //metodo toggle o accionador del boton. Modal de bootstrap son capas ocultas de DIV que se muestran cuando se preciona en un enlace o boton
+            //metodo toggle o accionador del boton. Modal de bootstrap son capas ocultas de DIV que se muestran cuando se preciona en un enlace o boton. isOpen retorna un verdadero o falso que indica si la ventana emergente se muestra o no
             <Container>
                 <Button onClick={this.toggle}>Ver ficha</Button>
-            
+                
                 <Modal isOpen={this.state.modal}>
-                    Se preciono sobre el boton. y se Abrio el Modal. La variable isOpen accede al estado del elemento del Modal, abriendoce el poput
+                   <ModalHeader>{this.props.props.titulo}</ModalHeader>
+                   <ModalBody>
+                    <CardImg src={this.props.props.imagen}/>
+                    <p>El detalle del producto seleccionado es el siguiente: </p>
+                    {this.props.props.descripcion}
+                    <p>Este producto tiene un valor de <b>{this.props.props.precio}</b> pesos.</p>
+                   </ModalBody>
+                   <ModalFooter className='modalFooter'>
+                    <Button color='primary' onClick={this.toggle}>Agregar al carrito</Button>
+                    <Button color='secondary' onClick={this.toggle}>Volver atrás</Button>
+                   </ModalFooter>
                 </Modal>
             </Container>
         );

@@ -1,6 +1,8 @@
 import React from 'react';
 import {Button, CardText, Col,CardSubtitle, CardImg,CardTitle,CardBody, Card } from 'reactstrap';
-import './Producto.css'
+import './Producto.css';
+import FichaProducto from './fichaProducto';
+
 
 /*
 function Producto(props){
@@ -35,8 +37,7 @@ class Producto extends React.Component{
                         <CardSubtitle><b>Valor : </b>{this.props.precio}</CardSubtitle>
                         <CardText>{this.props.descripcion}
                         </CardText>
-                        <Button className='Button'>Comprar</Button>
-                        <Button className='Button'>Ver Ficha</Button>
+                        <FichaProducto props={this.props}></FichaProducto>
                     </CardBody>
                 </Card>
             </Col>

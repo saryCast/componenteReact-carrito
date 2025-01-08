@@ -37,6 +37,7 @@ class FichaProducto extends React.Component{
                     <p>El detalle del producto seleccionado es el siguiente: </p>
                     {this.props.props.descripcion}
                     <p>Este producto tiene un valor de <b>{this.props.props.precio}</b> pesos.</p>
+                    <p>Hay <b>{this.props.props.stock}</b> unidades disponibles.</p>
                    </ModalBody>
                    <ModalFooter className='modalFooter'>
                     <Button color='primary' onClick={this.toggle}>Agregar al carrito</Button>

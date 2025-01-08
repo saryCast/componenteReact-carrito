@@ -1,6 +1,7 @@
 import React from 'react'
 import {Modal, Container, Button, ModalHeader, ModalBody, ModalFooter, CardImg} from 'reactstrap';
 import './fichaProducto.css';
+import {listaCarrito} from '../listaCarrito.json';
 
 
 class FichaProducto extends React.Component{
@@ -9,18 +10,27 @@ class FichaProducto extends React.Component{
         //metodo super que llama a toda las funciones de la clase que hereda
         super();
         this.state={
-            modal:false
+            modal:false,
+            listaCarrito
         };
 
         //bind hara que los argumentos recibidos por la clase puedan ser compartidos a los demas metodos de la clase
         this.toggle = this.toggle.bind(this);
-        console.log(props.props);
+        this.agregarCarrito = this.agregarCarrito.bind(this);
     }
     toggle(){
        // console.log(this.props)
        this.setState(prevState =>({
             modal: !prevState.modal
        }));
+    }
+
+    agregarCarrito(){
+        listaCarrito.push({
+            "titulo": this.props.props.titulo,
+            "precio":this.props.props.precio
+        })
+
     }
 
     //boton de reacstrap
@@ -40,7 +50,7 @@ class FichaProducto extends React.Component{
                     <p>Hay <b>{this.props.props.stock}</b> unidades disponibles.</p>
                    </ModalBody>
                    <ModalFooter className='modalFooter'>
-                    <Button color='primary' onClick={this.toggle}>Agregar al carrito</Button>
+                    <Button color='primary' onClick={this.agregarCarrito}>Agregar al carrito</Button>
                     <Button color='secondary' onClick={this.toggle}>Volver atrás</Button>
                    </ModalFooter>
                 </Modal>

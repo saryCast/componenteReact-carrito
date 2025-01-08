@@ -1,0 +1,32 @@
+{
+    "listaProductos":[
+        {
+            "titulo":"Headphone Purple",
+            "imagen":"https://image.freepik.com/vector-gratis/ilustracion-icono-auriculares_17146-29.jpg",
+            "descripcion":"Audifonos Alta calidad de sonido, HD Sonido Envolvente",
+            "precio":"24.390"
+        },
+
+        {
+            "titulo":"Headphone Purple",
+            "imagen":"https://image.freepik.com/vector-gratis/ilustracion-icono-auriculares_17146-29.jpg",
+            "descripcion":"Audifonos Alta calidad de sonido, HD Sonido Envolvente",
+            "precio":"24.390"
+        },
+
+        {
+            "titulo":"Headphone Purple",
+            "imagen":"https://image.freepik.com/vector-gratis/ilustracion-icono-auriculares_17146-29.jpg",
+            "descripcion":"Audifonos Alta calidad de sonido, HD Sonido Envolvente",
+            "precio":"24.390"
+        },
+
+        {
+            "titulo":"Headphone Purple",
+            "imagen":"https://image.freepik.com/vector-gratis/ilustracion-icono-auriculares_17146-29.jpg",
+            "descripcion":"Audifonos Alta calidad de sonido, HD Sonido Envolvente",
+            "precio":"24.390"
+        }
+
+    ]
+}

@@ -20,6 +20,9 @@ class FichaProducto extends React.Component{
     }
     toggle(){
        // console.log(this.props)
+       if (!this.state.modal){
+        this.props.closeCarro();
+       }
        this.setState(prevState =>({
             modal: !prevState.modal
        }));
@@ -29,7 +32,13 @@ class FichaProducto extends React.Component{
         listaCarrito.push({
             "titulo": this.props.props.titulo,
             "precio":this.props.props.precio
-        })
+        });
+        this.props.actualizarCantidadCarrito();
+        
+        this.setState(prevState =>({
+            modal: !prevState.modal
+       }));
+
 
     }
 

@@ -18,7 +18,7 @@ class Navegacion extends React.Component{
                         <NavLink href='/'>JavaScript</NavLink>
                     </NavItem>
                     <NavItem>
-                        <Carro/>
+                        <Carro popoverOpen={this.props.popoverOpen} toggleCarro={this.props.toggleCarro} cantidadCarrito={this.props.cantidadCarrito}/>
                     </NavItem>
                 </Nav>
             </Navbar>

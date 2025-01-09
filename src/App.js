@@ -4,6 +4,8 @@ import './App.css';
 import Producto from './Componentes/Producto';
 import Navegacion from './Componentes/Navegacion';
 import {listaProductos} from './listaProductos.json';
+import Carro from './Componentes/carro';
+import FichaProducto from './Componentes/fichaProducto';
 
 /*
 function App() {
@@ -44,14 +46,29 @@ export default App;
 //Cambiamos a POO
 console.log(listaProductos);
 class App extends React.Component{
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
 
     this.state = {
-      listaProductos
+      popoverOpen: false,
+      listaProductos,
+      cantidadCarrito:0
     };
+    this.toggleCarro= this.toggleCarro.bind(this);
+    this.actualizarCantidadCarrito=this.actualizarCantidadCarrito.bind(this);
   }
 
+  actualizarCantidadCarrito(){
+    this.setState(prevState=>({
+      cantidadCarrito: prevState.cantidadCarrito+1
+    }));
+  }
+
+  toggleCarro(state=null){
+    this.setState(prevState =>({
+      popoverOpen: state !== null ? state:!prevState.popoverOpen
+    }));
+  }
 /* ELIMINAMOS PARA PASAR LOS DATOS POR JSON
     render(){
     return (
@@ -100,13 +117,19 @@ class App extends React.Component{
             descripcion={listaProductos.descripcion}
             precio={listaProductos.precio}
             stock={listaProductos.stock}
+            closeCarro={()=>this.toggleCarro(false)}
+            actualizarCantidadCarrito={this.actualizarCantidadCarrito}
             />
           )
         }
       );
     return (
       <Container>
-        <Navegacion titulo="Mi primer sitio de compras en React"/>
+        <Navegacion titulo="Mi primer sitio de compras en React"
+        popoverOpen={this.state.popoverOpen} 
+        toggleCarro={this.toggleCarro}
+        cantidadCarrito={this.state.cantidadCarrito}
+        />
         <Row>
           {arregloComponentes}
         

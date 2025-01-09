@@ -37,7 +37,7 @@ class Producto extends React.Component{
                         <CardSubtitle><b>Valor : </b>{this.props.precio}</CardSubtitle>
                         <CardText>{this.props.descripcion}
                         </CardText>
-                        <FichaProducto props={this.props}></FichaProducto>
+                        <FichaProducto props={this.props} closeCarro={this.props.closeCarro} actualizarCantidadCarrito={this.props.actualizarCantidadCarrito}></FichaProducto>
                     </CardBody>
                 </Card>
             </Col>

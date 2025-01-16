@@ -8,10 +8,11 @@ class FichaProducto extends React.Component{
    //Metodo constructor, antes de renderizar
     constructor(props){
         //metodo super que llama a toda las funciones de la clase que hereda
-        super();
+        super(props);
         this.state={
             modal:false,
-            listaCarrito
+            listaCarrito,
+            stock: this.props.props.stock
         };
 
         //bind hara que los argumentos recibidos por la clase puedan ser compartidos a los demas metodos de la clase
@@ -29,15 +30,26 @@ class FichaProducto extends React.Component{
     }
 
     agregarCarrito(){
+     if(this.props.props.stock>0){
         listaCarrito.push({
             "titulo": this.props.props.titulo,
-            "precio":this.props.props.precio
+            "precio":this.props.props.precio,
+        
         });
         this.props.actualizarCantidadCarrito();
-        
+        // Actualizamos el stock localmente 
+        this.setState(prevState => ({ 
+            stock: prevState.stock - 1 
+        }));
+
+        this.props.actualizarStock(this.props.props.titulo, this.state.stock-1);
+
         this.setState(prevState =>({
             modal: !prevState.modal
        }));
+     } else{
+        alert("Stock insuficiente");
+     }
 
 
     }
@@ -56,7 +68,7 @@ class FichaProducto extends React.Component{
                     <p>El detalle del producto seleccionado es el siguiente: </p>
                     {this.props.props.descripcion}
                     <p>Este producto tiene un valor de <b>{this.props.props.precio}</b> pesos.</p>
-                    <p>Hay <b>{this.props.props.stock}</b> unidades disponibles.</p>
+                    <p>Hay <b>{this.state.stock}</b> unidades disponibles.</p>
                    </ModalBody>
                    <ModalFooter className='modalFooter'>
                     <Button color='primary' onClick={this.agregarCarrito}>Agregar al carrito</Button>

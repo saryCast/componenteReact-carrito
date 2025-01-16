@@ -23,15 +23,25 @@ class Carro extends React.Component{
        }));
     }
 
+    calcularTotal() {
+        return this.state.listaCarrito.reduce((total, producto) => {
+            // Convertimos el precio a número si viene como string
+            const precio = parseInt(producto.precio.replace(/[^0-9]/g, ''));
+            return total + precio;
+        }, 0);
+    }
+
     
     render(){
+        const total = this.calcularTotal();
+
         const arregloCarrito = this.state.listaCarrito.map(
             (listaCarrito,i)=>{
                 return(
-                    <tr>
+                    <tr key={i}>
                         <td>{(i+=1)}</td>
                         <td>{listaCarrito.titulo}</td>
-                        <td>{listaCarrito.precio}</td>
+                        <td>${listaCarrito.precio}</td>
                     </tr>
                 );
             }
@@ -56,6 +66,14 @@ class Carro extends React.Component{
                                 <tbody>
                                     {arregloCarrito}
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colSpan="2">Total:</th>
+                                    <td><strong>${total.toLocaleString('es-CL', { maximumFractionDigits: 0 })}</strong></td>
+
+                                   
+                                </tr>
+                            </tfoot>
                         </Table>
                     </PopoverBody>
                 </Popover>

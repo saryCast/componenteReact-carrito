@@ -4,8 +4,6 @@ import './App.css';
 import Producto from './Componentes/Producto';
 import Navegacion from './Componentes/Navegacion';
 import {listaProductos} from './listaProductos.json';
-import Carro from './Componentes/carro';
-import FichaProducto from './Componentes/fichaProducto';
 
 /*
 function App() {
@@ -56,6 +54,7 @@ class App extends React.Component{
     };
     this.toggleCarro= this.toggleCarro.bind(this);
     this.actualizarCantidadCarrito=this.actualizarCantidadCarrito.bind(this);
+    this.actualizarStock=this.actualizarStock.bind(this);
   }
 
   actualizarCantidadCarrito(){
@@ -69,6 +68,11 @@ class App extends React.Component{
       popoverOpen: state !== null ? state:!prevState.popoverOpen
     }));
   }
+
+  actualizarStock(titulo, nuevoStock) { 
+    this.setState(prevState => ({ 
+      listaProductos: prevState.listaProductos.map(producto => 
+        producto.titulo === titulo ? { ...producto, stock: nuevoStock } : producto ) })); }
 /* ELIMINAMOS PARA PASAR LOS DATOS POR JSON
     render(){
     return (
@@ -119,6 +123,8 @@ class App extends React.Component{
             stock={listaProductos.stock}
             closeCarro={()=>this.toggleCarro(false)}
             actualizarCantidadCarrito={this.actualizarCantidadCarrito}
+            precioTotal={(+listaProductos.precio)}
+            actualizarStock={this.actualizarStock}
             />
           )
         }
@@ -137,6 +143,5 @@ class App extends React.Component{
       </Container>
     );
   } 
-
 }
 export default App;
